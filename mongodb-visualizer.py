@@ -29,7 +29,7 @@ for record in collection.find():
 
 # Matrix with all temperature values. x=temperatures, y=mrms, z=records
 # Index using [z][y][x]. First index is 0
-values = [[[0 for x in range(4)] for y in range(9)] for z in range(z)]
+values = numpy.array([[[0 for x in range(4)] for y in range(9)] for z in range(z)])
 #print(values)
 
 # For all MRM temperature records
@@ -63,12 +63,6 @@ for record in collection.find():
 #print(values)
 #print(values[0])
 
-#mylist = list(cursor)
-#print(mylist)
-
-#print(list(cursor))
-
-
 ####### Plotting using plotly
 mrm_label = ['MRM 1', 'MRM 2', 'MRM 3', 'MRM 4', 'MRM 5', 'MRM 6', 'MRM 7', 'MRM 8', 'MRM 9',]
 temperature_label = ['A', 'B', 'C', 'Mean']
@@ -78,6 +72,9 @@ temperature_label = ['A', 'B', 'C', 'Mean']
 
 # Transpose x and y in array
 values_trans = numpy.array(values[1]).transpose()
+#print("")
+#print(numpy.array(values).transpose())
+#x = numpy.array(values)
 
 # Plot
 fig = FF.create_annotated_heatmap(values_trans, x=mrm_label, y=temperature_label, colorscale='Jet') # 'Viridis'
